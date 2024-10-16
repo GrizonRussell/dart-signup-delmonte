@@ -37,8 +37,7 @@ class PersonalInfoForm extends StatelessWidget {
             formData,
             validator: (value) {
               if (value != null && value.isNotEmpty) {
-                if (!RegExp(
-                        r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
+                if (!RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
                     .hasMatch(value)) {
                   return 'Invalid email address';
                 }
@@ -72,7 +71,7 @@ class PersonalInfoForm extends StatelessWidget {
               return null;
             },
           ),
-          _buildTextField('Gender', 'gender', formData),
+          _buildGenderDropdown('Gender', 'gender', formData),
           _buildTextField('SSS Number', 'sss', formData),
           _buildTextField('TIN', 'tin', formData),
           _buildTextField('Philhealth', 'philhealth', formData),
@@ -118,11 +117,9 @@ class PersonalInfoForm extends StatelessWidget {
       child: TextFormField(
         decoration: InputDecoration(
           labelText: label,
-          labelStyle:
-              const TextStyle(color: Color.fromRGBO(255, 255, 255, 1)),
+          labelStyle: const TextStyle(color: Color.fromRGBO(255, 255, 255, 1)),
           filled: true,
-          fillColor:
-              const Color.fromARGB(255, 25, 189, 109).withOpacity(0.2),
+          fillColor: const Color.fromARGB(255, 25, 189, 109).withOpacity(0.2),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
                 color: const Color.fromRGBO(11, 134, 74, 1).withOpacity(0.5)),
@@ -136,6 +133,50 @@ class PersonalInfoForm extends StatelessWidget {
         validator: validator,
         onSaved: (value) {
           formData[key] = value ?? '';
+        },
+      ),
+    );
+  }
+
+  Widget _buildGenderDropdown(
+    String label,
+    String key,
+    Map<String, String> formData,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: DropdownButtonFormField<String>(
+        decoration: InputDecoration(
+          labelText: label,
+          labelStyle:
+              const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+          filled: true,
+          fillColor: const Color.fromARGB(255, 25, 189, 109).withOpacity(0.2),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+                color: const Color.fromRGBO(11, 134, 74, 1).withOpacity(0.5)),
+          ),
+          focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Color.fromRGBO(11, 134, 74, 1)),
+          ),
+        ),
+        style: const TextStyle(color: Colors.white),
+        dropdownColor: const Color.fromRGBO(11, 134, 74, 1),
+        items: ['Male', 'Female', 'LGBTQ++', 'Unknown']
+            .map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value),
+          );
+        }).toList(),
+        onChanged: (value) {
+          formData[key] = value ?? '';
+        },
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please select a gender';
+          }
+          return null;
         },
       ),
     );
