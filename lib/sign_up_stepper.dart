@@ -9,43 +9,43 @@ import 'steps/Step7_training_form.dart';
 import 'steps/Step8_subscribe_email_form.dart';
 import 'steps/Step9_complete_screen_form.dart';
 
-class SignUpStepper extends StatefulWidget {
+class DelmonteStepper extends StatefulWidget {
   @override
-  _SignUpStepperState createState() => _SignUpStepperState();
+  _DelmonteStepperState createState() => _DelmonteStepperState();
 }
 
-class _SignUpStepperState extends State<SignUpStepper> {
+class _DelmonteStepperState extends State<DelmonteStepper> {
   int _currentStep = 0;
   final Map<String, String> _formData = {
-    'firstName': '',
-    'lastName': '',
-    'middleName': '',
-    'email': '',
-    'alternateEmail': '',
-    'contact': '',
-    'alternateContact': '',
-    'presentAddress': '',
-    'permanentAddress': '',
-    'gender': '',
-    'dob': '',
-    'sss': '',
-    'tin': '',
-    'philhealth': '',
-    'pagibig': '',
-    'password': '',
-    'confirmPassword': '',
-    'collegeCourse': '',
-    'graduateCourse': '',
-    'graduationDate': '',
-    'prcLicenseNo': '',
-    'licenseType': '',
-    'licenseNo': '',
-    'expirationDate': '',
-    'previousEmployer': '',
-    'position': '',
-    'yearsOfExperience': '',
-    'knowledge': '',
-    'skills': '',
+    // 'firstName': '',
+    // 'lastName': '',
+    // 'middleName': '',
+    // 'email': '',
+    // 'alternateEmail': '',
+    // 'contact': '',
+    // 'alternateContact': '',
+    // 'presentAddress': '',
+    // 'permanentAddress': '',
+    // 'gender': '',
+    // 'dob': '',
+    // 'sss': '',
+    // 'tin': '',
+    // 'philhealth': '',
+    // 'pagibig': '',
+    // 'password': '',
+    // 'confirmPassword': '',
+    // 'collegeCourse': '',
+    // 'graduateCourse': '',
+    // 'graduationDate': '',
+    // 'prcLicenseNo': '',
+    // 'licenseType': '',
+    // 'licenseNo': '',
+    // 'expirationDate': '',
+    // 'previousEmployer': '',
+    // 'position': '',
+    // 'yearsOfExperience': '',
+    // 'knowledge': '',
+    // 'skills': '',
   };
 
   @override
@@ -220,6 +220,8 @@ class _SignUpStepperState extends State<SignUpStepper> {
         content: EducationForm(
           formKey: _formKeys[1],
           formData: _formData,
+          institutionList: [],
+          courseList: [],
         ),
         isActive: _currentStep >= 1,
         state: _stepState(1),
@@ -269,6 +271,8 @@ class _SignUpStepperState extends State<SignUpStepper> {
           formKey: _formKeys[5],
           formData: _formData,
         ),
+        isActive: _currentStep >= 5,
+        state: _stepState(5),
       ),
       Step(
         title: const Text(
@@ -279,6 +283,8 @@ class _SignUpStepperState extends State<SignUpStepper> {
           formKey: _formKeys[6],
           formData: _formData,
         ),
+        isActive: _currentStep >= 6,
+        state: _stepState(6),
       ),
       Step(
         title: const Text(
@@ -289,6 +295,8 @@ class _SignUpStepperState extends State<SignUpStepper> {
           formKey: _formKeys[7],
           formData: _formData,
         ),
+        isActive: _currentStep >= 7,
+        state: _stepState(7),
       ),
       Step(
         title: const Text(
@@ -299,6 +307,8 @@ class _SignUpStepperState extends State<SignUpStepper> {
           formKey: _formKeys[8],
           formData: _formData,
         ),
+        isActive: _currentStep >= 8,
+        state: _stepState(8),
       ),
     ];
   }
